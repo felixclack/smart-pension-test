@@ -37,7 +37,10 @@ class PageCount
   # Returns Hash
   def all
     {
-      total: total_counts.to_a
+      total: total_counts.to_a,
+      unique: unique_counts.map do |path, counts|
+        [path, counts.keys.size]
+      end
     }
   end
 
@@ -50,6 +53,16 @@ class PageCount
       path, _ip = entry.split(' ')
       hash[path] ||= 0
       hash[path] += 1
+    end
+  end
+
+  def unique_counts
+    @unique_counts ||= entries.each_with_object({}) do |entry, hash|
+      path, ip = entry.split(' ')
+      hash[path] ||= {}
+      hash[path][ip] ||= 0
+      hash[path][ip] += 1
+      hash
     end
   end
 end
