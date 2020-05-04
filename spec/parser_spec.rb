@@ -28,5 +28,11 @@ RSpec.describe Parser do
 
       it { is_expected.to eq 'No results' }
     end
+
+    describe 'with multiple valid log entries' do
+      let(:filename) { 'spec/fixtures/count.log' }
+
+      it { is_expected.to eq "/home 2 visits\n/about 1 visit" }
+    end
   end
 end
