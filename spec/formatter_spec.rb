@@ -25,5 +25,13 @@ RSpec.describe Formatter do
     it 'returns the sorted counts as a string' do
       is_expected.to eq "total\n/home 2 visits\n/about 1 visit"
     end
+
+    describe 'when the page count is empty' do
+      let(:page_count) { { total: [], unique: [] } }
+
+      it 'returns No Results' do
+        is_expected.to eq('No Results')
+      end
+    end
   end
 end

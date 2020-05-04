@@ -26,7 +26,7 @@ RSpec.describe Parser do
     describe 'with an empty log' do
       let(:filename) { 'spec/fixtures/empty.log' }
 
-      it { is_expected.to eq 'No results' }
+      it { is_expected.to eq 'No Results' }
     end
 
     describe 'with multiple valid log entries' do
