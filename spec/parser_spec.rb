@@ -19,4 +19,14 @@ RSpec.describe Parser do
       end
     end
   end
+
+  describe '#run' do
+    subject { described_class.new(filename).run }
+
+    describe 'with an empty log' do
+      let(:filename) { 'spec/fixtures/empty.log' }
+
+      it { is_expected.to eq 'No results' }
+    end
+  end
 end

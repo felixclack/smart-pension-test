@@ -7,18 +7,32 @@
 #         It co-ordinates accepting the inputs and notifying all the
 #         objects required to build the output.
 class Parser
-  def initialize(file)
-    raise ArgumentError, 'a log file must be provided' if file.nil?
+  def initialize(filename)
+    raise ArgumentError, 'a log file must be provided' if filename.nil?
 
-    self.file = file
+    self.filename = filename
   end
 
-  def run; end
+  def run
+    return empty_message if no_results?
+  end
 
   private
 
-  attr_accessor :file
+  attr_accessor :filename
+
+  def empty_message
+    'No results'
+  end
+
+  def entries
+    File.read(File.expand_path("../#{filename}", __FILE__))
+  end
+
+  def no_results?
+    entries.size.zero?
+  end
 end
 
 called_from_command_line = $PROGRAM_NAME == __FILE__
-Parser.new(ARGV[0]).run if called_from_command_line
+puts Parser.new(ARGV[0]).run if called_from_command_line
