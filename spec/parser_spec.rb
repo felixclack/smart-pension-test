@@ -18,6 +18,17 @@ RSpec.describe Parser do
           .to raise_error(ArgumentError, 'a log file must be provided')
       end
     end
+
+    describe 'when the File is non-existent' do
+      before do
+        allow(File).to receive(:exist?).and_return(false)
+      end
+
+      it 'raises an error' do
+        expect { described_class.new('no.log') }
+          .to raise_error(ArgumentError, 'that file does not exist')
+      end
+    end
   end
 
   describe '#run' do
