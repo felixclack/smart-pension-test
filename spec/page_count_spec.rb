@@ -40,5 +40,13 @@ RSpec.describe PageCount do
         )
       end
     end
+
+    describe 'with empty entries' do
+      let(:entries) { [] }
+
+      it 'returns an empty array' do
+        is_expected.to match(a_hash_including(total: [], unique: []))
+      end
+    end
   end
 end

@@ -3,12 +3,8 @@
 # Public: Given an array of log entries, calculate the different
 #         ways we want to count page views.
 #
-#         The parent is responsible for handling the empty case so
-#         this object can be confident that there is something to
-#         count.
-#
-#         This leaves this class to be concerned about counting total page
-#         views and also unique counts.
+#         This class is concerned about counting total page views and
+#         also unique counts.
 #
 #         It is not responsible for the output format, as that is handled
 #         by another object.

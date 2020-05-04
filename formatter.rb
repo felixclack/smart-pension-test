@@ -34,6 +34,8 @@ class Formatter
   #
   # Returns String
   def to_s
+    return 'No Results' if page_count.all? { |_key, count| count.empty? }
+
     output = []
     page_count.each_pair do |type, counts|
       output << type

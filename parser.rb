@@ -17,8 +17,6 @@ class Parser
   end
 
   def run
-    return empty_message if no_results?
-
     results
   end
 
@@ -30,16 +28,8 @@ class Parser
     @counts = PageCount.new(entries).all
   end
 
-  def empty_message
-    'No results'
-  end
-
   def entries
     File.readlines(File.expand_path("../#{filename}", __FILE__))
-  end
-
-  def no_results?
-    entries.size.zero?
   end
 
   def results
