@@ -7,4 +7,5 @@ ruby '2.6.6'
 group :development, :test do
   gem 'rspec'
   gem 'rubocop', '~> 0.82.0', require: false
+  gem 'simplecov', '~> 0.18.5'
 end
