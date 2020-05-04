@@ -30,7 +30,7 @@ class Parser
   end
 
   def entries
-    File.readlines(filename)
+    File.foreach(filename)
   end
 
   def results
