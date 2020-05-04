@@ -38,4 +38,8 @@ class Parser
 end
 
 called_from_command_line = $PROGRAM_NAME == __FILE__
-puts Parser.new(ARGV[0]).run if called_from_command_line
+begin
+  puts Parser.new(ARGV[0]).run if called_from_command_line
+rescue StandardError => e
+  warn e
+end
