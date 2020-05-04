@@ -32,7 +32,7 @@ RSpec.describe Parser do
     describe 'with multiple valid log entries' do
       let(:filename) { 'spec/fixtures/count.log' }
 
-      it { is_expected.to eq "/home 2 visits\n/about 1 visit" }
+      it { is_expected.to eq "total\n/home 2 visits\n/about 1 visit" }
     end
   end
 end

@@ -26,11 +26,19 @@ class PageCount
     self.entries = entries
   end
 
-  # Public: Return an array of all paths and their counts.
+  # Public: Return a Hash of arrays with all paths and their counts.
   #
-  # Returns Array
+  #         We want to scope the counts by the type, either the total
+  #         count or the unique count.
+  #
+  #         The returned Hash is keyed by the scope and each value is
+  #         an array of arrays containing the path and the count.
+  #
+  # Returns Hash
   def all
-    total_counts.to_a
+    {
+      total: total_counts.to_a
+    }
   end
 
   private

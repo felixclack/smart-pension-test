@@ -24,7 +24,7 @@ RSpec.describe PageCount do
     subject { described_class.new(entries).all }
 
     it 'returns the paths with a total count' do
-      is_expected.to eq([['/home', 1], ['/about', 1]])
+      is_expected.to eq({ total: [['/home', 1], ['/about', 1]] })
     end
   end
 end

@@ -19,11 +19,11 @@ RSpec.describe Formatter do
   end
 
   describe '#to_s' do
-    let(:page_count) { [['/about', 1], ['/home', 2]] }
+    let(:page_count) { { total: [['/about', 1], ['/home', 2]] } }
     subject { described_class.new(page_count).to_s }
 
     it 'returns the sorted counts as a string' do
-      is_expected.to eq "/home 2 visits\n/about 1 visit"
+      is_expected.to eq "total\n/home 2 visits\n/about 1 visit"
     end
   end
 end

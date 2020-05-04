@@ -11,12 +11,15 @@ class Formatter
   # Public: Accepts a PageCount object as the only argument and stores
   #         it in memory ready to convert to an output format.
   #
-  # page_count - PageCount behaves like an array of arrays.
+  # page_count - A Hash where the key is the count type and the value is
+  #              an array of arrays.
   #              eg.
-  #              [
-  #                ['/home', 2],
-  #                ['/about', 1]
-  #              ]
+  #              {
+  #                total: [
+  #                  ['/home', 2],
+  #                  ['/about', 1]
+  #                ]
+  #              }
   #
   # Returns an instance of Formatter
   def initialize(page_count)
@@ -31,17 +34,22 @@ class Formatter
   #
   # Returns String
   def to_s
-    sorted_total_counts.map do |path, count|
-      "#{path} #{count} visit#{'s' if count.zero? || count > 1}"
-    end.join("\n")
+    output = []
+    page_count.each_pair do |type, counts|
+      output << type
+      sorted(counts).each do |path, count|
+        output << "#{path} #{count} visit#{'s' if count.zero? || count > 1}"
+      end
+    end
+    output.join("\n")
   end
 
   private
 
   attr_accessor :page_count
 
-  def sorted_total_counts
-    page_count.sort do |a, b|
+  def sorted(counts)
+    counts.sort do |a, b|
       b[1] <=> a[1]
     end
   end
